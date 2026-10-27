@@ -1,6 +1,6 @@
 <a class="skip" href="#contenu">Aller au contenu</a>
 
-<header class="hdr" [class.hdr--open]="menuOpen()">
+<header class="hdr" [class.hdr--open]="menuOpen()" [class.hdr--compact]="compact()">
   <div class="container-site hdr__inner">
     <a routerLink="/" class="hdr__brand" aria-label="Gourmet Steakhouse, accueil">
       <img
@@ -43,7 +43,7 @@
 
 <footer class="ftr">
   <div class="container-site">
-    <div class="ftr__grid">
+    <div class="ftr__grid reveal--stagger" appReveal>
       <div class="ftr__brand">
         <img
           src="/images/logo/gourmet-steakhouse-logo-blanc.png"

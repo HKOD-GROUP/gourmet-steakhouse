@@ -1,5 +1,6 @@
 .intro__rule {
   margin: 24px 0;
+  transform-origin: left center;
 }
 
 .intro__lead {
@@ -16,6 +17,7 @@
 .chapter__media {
   position: relative;
   min-height: 480px;
+  overflow: hidden;
 
   app-picture {
     position: absolute;

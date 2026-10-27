@@ -11,6 +11,7 @@ import { formatNumber } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
+import { RevealDirective } from '../../shared/animation/reveal.directive';
 import { SeoService } from '../../core/services/seo.service';
 import { ALCOHOL_NOTICE, MENU, MenuItem, MenuSection } from '../../core/data/menu';
 import { MAIN_ESTABLISHMENT } from '../../core/data/restaurant';
@@ -23,7 +24,7 @@ import { breadcrumbJsonLd, menuJsonLd } from '../../core/data/structured-data';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [SiteShellComponent, RouterLink],
+  imports: [SiteShellComponent, RouterLink, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',

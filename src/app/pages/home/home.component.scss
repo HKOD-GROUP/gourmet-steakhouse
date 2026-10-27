@@ -38,6 +38,7 @@
 .hero__media {
   position: relative;
   min-height: 420px;
+  overflow: hidden;
   background: var(--bordeaux-fonce);
 
   app-picture {
@@ -129,9 +130,11 @@
   gap: 28px;
 }
 
-.dish {
+.dish__media {
+  aspect-ratio: 3 / 4;
+
   app-picture {
-    aspect-ratio: 3 / 4;
+    height: 100%;
   }
 }
 
@@ -170,7 +173,7 @@
     gap: 36px;
   }
 
-  .dish app-picture {
+  .dish__media {
     aspect-ratio: 4 / 3;
   }
 }
@@ -215,7 +218,7 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.formules + .formules__note + .btn {
+.formules__note + .btn {
   margin-top: 20px;
 }
 

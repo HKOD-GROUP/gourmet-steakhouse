@@ -7,12 +7,15 @@ import { MENU, SIGNATURE_DISHES } from '../../core/data/menu';
 import { allRestaurantsJsonLd } from '../../core/data/structured-data';
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
 import { PictureComponent } from '../../shared/components/picture/picture.component';
+import { MarqueeComponent } from '../../shared/components/marquee/marquee.component';
+import { RevealDirective } from '../../shared/animation/reveal.directive';
+import { ParallaxDirective } from '../../shared/animation/parallax.directive';
 
 /** Page d'accueil : la braise, le buffet, les incontournables, les deux adresses. */
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, SiteShellComponent, PictureComponent],
+  imports: [RouterLink, SiteShellComponent, PictureComponent, MarqueeComponent, RevealDirective, ParallaxDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -22,6 +25,15 @@ export class HomeComponent {
   readonly main = MAIN_ESTABLISHMENT;
   readonly establishments = ESTABLISHMENTS;
   readonly dishes = SIGNATURE_DISHES;
+  readonly marquee = [
+    'Grillades au charbon de bois',
+    'Buffet à volonté',
+    'Cuisine halal',
+    'Ouvert 7 jours sur 7',
+    'Villiers-le-Bel',
+    'Fosses',
+    'Plateaux à partager',
+  ];
 
   /** Repères de prix lus dans la carte, pour ne jamais les dupliquer à la main. */
   readonly prices = (() => {

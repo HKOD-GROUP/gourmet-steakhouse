@@ -1,9 +1,11 @@
 <app-site-shell>
   <section class="section section--tight contact-intro" aria-labelledby="contact-titre">
     <div class="container-site">
-      <h1 id="contact-titre" class="display-lg">Infos pratiques</h1>
-      <span class="rule contact-intro__rule" aria-hidden="true"></span>
-      <p class="lead contact-intro__lead">
+      <h1 id="contact-titre" class="display-lg reveal--lines" appReveal>
+        <span class="line" style="--i: 0"><span>Infos pratiques</span></span>
+      </h1>
+      <span class="rule contact-intro__rule" aria-hidden="true" appReveal [revealDelay]="250"></span>
+      <p class="lead contact-intro__lead" appReveal [revealDelay]="350">
         Deux adresses dans le Val-d’Oise, ouvertes tous les jours, midi et soir. Réservation par
         téléphone.
       </p>
@@ -17,7 +19,7 @@
       [attr.aria-labelledby]="'place-' + e.id"
     >
       <div class="container-site place__grid">
-        <div class="place__text">
+        <div class="place__text" appReveal [revealDelay]="150">
           <h2 [id]="'place-' + e.id" class="display-md place__title">{{ e.name }}</h2>
 
           <address class="place__address">
@@ -45,7 +47,7 @@
           </div>
         </div>
 
-        <div class="place__photo">
+        <div class="place__photo reveal--clip zoom-media" appReveal>
           <app-picture
             folder="plats"
             [name]="photo(e.id).name"
@@ -59,8 +61,8 @@
 
   <section class="section section--tight notes" aria-labelledby="notes-titre">
     <div class="container-site">
-      <h2 id="notes-titre" class="display-md notes__title">Bon à savoir</h2>
-      <div class="notes__grid">
+      <h2 id="notes-titre" class="display-md notes__title" appReveal>Bon à savoir</h2>
+      <div class="notes__grid reveal--stagger" appReveal>
         <div class="notes__item">
           <h3 class="display-sm">Buffet à volonté</h3>
           <p>
@@ -87,7 +89,7 @@
   </section>
 
   <section class="section section--bordeaux section--tight cta" aria-labelledby="cta-titre">
-    <div class="container-site cta__inner">
+    <div class="container-site cta__inner" appReveal>
       <h2 id="cta-titre" class="display-md">Envie de voir la carte ?</h2>
       <a routerLink="/carte" class="btn btn--light">Voir la carte</a>
     </div>

@@ -1,29 +1,26 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component, afterNextRender, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
+import { PageCurtainComponent } from './shared/animation/page-curtain.component';
 
 /**
- * Shell applicatif : uniquement un `router-outlet`. Chaque page/layout porte
- * son propre chrome (landing : navbar+footer inline ; auth : AuthLayout ;
- * dashboard : MainLayout ; portail public : plein écran sans chrome).
+ * Shell applicatif : un `router-outlet` et le rideau de transition entre pages.
+ * Chaque page porte son propre chrome (`app-site-shell`). Le défilement en haut
+ * à chaque navigation est géré par le rideau, pendant qu'il couvre l'écran.
  */
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, PageCurtainComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private platformId = inject(PLATFORM_ID);
-  private router = inject(Router);
-
   constructor() {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      }
-    });
+    const document = inject(DOCUMENT);
+    // Signale au script d'amorçage (index.html) que l'application pilote bien
+    // les animations : les éléments cachés seront révélés au défilement.
+    afterNextRender(() => document.documentElement.classList.add('anim-ready'));
   }
 }

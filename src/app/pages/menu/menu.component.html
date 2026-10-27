@@ -2,15 +2,17 @@
   <!-- En-tête de page -->
   <section class="section section--tight page-head" aria-labelledby="titre-carte">
     <div class="container-site">
-      <h1 id="titre-carte" class="display-lg">La carte</h1>
-      <span class="rule page-head__rule" aria-hidden="true"></span>
-      <p class="lead page-head__lead">
+      <h1 id="titre-carte" class="display-lg reveal--lines" appReveal>
+        <span class="line" style="--i: 0"><span>La carte</span></span>
+      </h1>
+      <span class="rule page-head__rule" aria-hidden="true" appReveal [revealDelay]="250"></span>
+      <p class="lead page-head__lead" appReveal [revealDelay]="350">
         Nos grillades sont cuites au charbon de bois et servies avec le buffet d’entrées à volonté :
         chaque plat marqué « avec buffet » donne accès aux entrées turques, aux salades, aux plats
         chauds et aux accompagnements, sans limite. Prix nets, service compris.
       </p>
       @if (buffet?.priceLunch !== undefined && buffet?.priceDinner !== undefined) {
-        <p class="page-head__key">
+        <p class="page-head__key" appReveal [revealDelay]="500">
           Buffet seul : <strong>{{ price(buffet!.priceLunch!) }}</strong> le midi,
           <strong>{{ price(buffet!.priceDinner!) }}</strong> le soir.
         </p>
@@ -42,7 +44,7 @@
   <div class="container-site">
     @for (group of groups; track group.id) {
       <section class="group" [attr.aria-labelledby]="'groupe-' + group.id">
-        <h2 [id]="'groupe-' + group.id" class="display-lg group__title">{{ group.title }}</h2>
+        <h2 [id]="'groupe-' + group.id" class="display-lg group__title" appReveal>{{ group.title }}</h2>
 
         <div class="group__columns" [class.group__columns--drinks]="group.id === 'boissons'">
           @for (section of group.sections; track section.id) {
@@ -53,7 +55,7 @@
               tabindex="-1"
               [attr.aria-labelledby]="'titre-' + section.id"
             >
-              <header class="menu-section__head">
+              <header class="menu-section__head" appReveal>
                 <h3 [id]="'titre-' + section.id" class="display-md">{{ section.title }}</h3>
                 @if (section.note) {
                   <span class="menu-section__note">{{ section.note }}</span>
@@ -71,7 +73,7 @@
                 </div>
               }
 
-              <ul class="menu-list">
+              <ul class="menu-list reveal--stagger" appReveal [revealDelay]="120">
                 @for (item of section.items; track item.name) {
                   <li class="menu-item">
                     <span class="menu-item__leader">
@@ -122,7 +124,7 @@
 
   <!-- Appel à l’action -->
   <section class="section--bordeaux section--tight cta" aria-labelledby="titre-cta">
-    <div class="container-site cta__inner">
+    <div class="container-site cta__inner" appReveal>
       <h2 id="titre-cta" class="display-lg cta__title">Une question, une table pour un groupe ?</h2>
       <div class="cta__actions">
         <a class="btn btn--light" [href]="'tel:' + main.phoneHref">Appeler le {{ main.phone }}</a>

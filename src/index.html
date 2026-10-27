@@ -40,6 +40,19 @@
   <link rel="manifest" href="site.webmanifest">
 
   <!-- Polices auto-hébergées (@fontsource) : aucun appel à un CDN tiers -->
+
+  <!-- Animations : les éléments révélés au défilement sont cachés dès le premier rendu,
+       uniquement si JavaScript tourne. Si l'application ne démarre pas, tout redevient visible. -->
+  <script>
+    (function () {
+      var html = document.documentElement;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      html.classList.add("anim");
+      setTimeout(function () {
+        if (!html.classList.contains("anim-ready")) html.classList.remove("anim");
+      }, 4000);
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

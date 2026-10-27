@@ -6,6 +6,7 @@ import { allRestaurantsJsonLd, breadcrumbJsonLd } from '../../core/data/structur
 import { SeoService } from '../../core/services/seo.service';
 import { PictureComponent } from '../../shared/components/picture/picture.component';
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
+import { RevealDirective } from '../../shared/animation/reveal.directive';
 
 /** Photo illustrant chaque établissement (repli sur la première si l'id est inconnu). */
 const PHOTOS: Record<string, { name: string; alt: string }> = {
@@ -24,7 +25,7 @@ const DEFAULT_PHOTO = PHOTOS['villiers-le-bel'];
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [RouterLink, SiteShellComponent, PictureComponent],
+  imports: [RouterLink, SiteShellComponent, PictureComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',

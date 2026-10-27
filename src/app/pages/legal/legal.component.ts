@@ -5,11 +5,12 @@ import { MAIN_ESTABLISHMENT, SITE } from '../../core/data/restaurant';
 import { breadcrumbJsonLd } from '../../core/data/structured-data';
 import { SeoService } from '../../core/services/seo.service';
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
+import { RevealDirective } from '../../shared/animation/reveal.directive';
 
 @Component({
   selector: 'app-legal',
   standalone: true,
-  imports: [RouterLink, SiteShellComponent],
+  imports: [RouterLink, SiteShellComponent, RevealDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './legal.component.html',
   styleUrl: './doc.scss',

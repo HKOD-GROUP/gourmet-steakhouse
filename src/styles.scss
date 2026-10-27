@@ -165,8 +165,10 @@
     background: var(--blanc);
   }
 
-  /* Boutons : rectangles francs, sans arrondi, texte en Big Shoulders */
+  /* Boutons : rectangles francs, sans arrondi, texte en Big Shoulders.
+     Au survol, un aplat balaie le bouton de gauche à droite. */
   .btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -184,11 +186,24 @@
     border: 2px solid var(--bordeaux);
     cursor: pointer;
     user-select: none;
-    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
 
-    &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
       background: var(--bordeaux-fonce);
-      border-color: var(--bordeaux-fonce);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+      transform: scaleX(1);
     }
   }
 
@@ -196,8 +211,12 @@
     background: transparent;
     color: var(--bordeaux);
 
-    &:hover {
+    &::before {
       background: var(--bordeaux);
+    }
+
+    &:hover,
+    &:focus-visible {
       color: var(--blanc);
     }
   }
@@ -207,9 +226,8 @@
     color: var(--bordeaux);
     border-color: var(--blanc);
 
-    &:hover {
+    &::before {
       background: var(--lin);
-      border-color: var(--lin);
     }
   }
 
@@ -218,8 +236,12 @@
     color: var(--blanc);
     border-color: var(--blanc);
 
-    &:hover {
+    &::before {
       background: var(--blanc);
+    }
+
+    &:hover,
+    &:focus-visible {
       color: var(--bordeaux);
     }
   }
@@ -349,4 +371,193 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ==========================================================================
+   Mouvement
+   Actif uniquement quand <html> porte la classe `anim` (script en ligne dans
+   index.html, retiré si l'application ne démarre pas ou si l'utilisateur a
+   demandé moins de mouvement). Sans JavaScript, tout est visible d'emblée.
+   ========================================================================== */
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+html.anim {
+  /* --- Révélation par défaut : fondu + montée --- */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+    transition:
+      opacity 0.9s $ease-out,
+      transform 0.9s $ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+
+    &.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Titre ligne par ligne --- */
+  .reveal--lines {
+    opacity: 1;
+    transform: none;
+
+    .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.06em;
+      margin-bottom: -0.06em;
+
+      > span {
+        display: block;
+        transform: translate3d(0, 110%, 0);
+        transition: transform 1s $ease-out;
+        transition-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * 110ms);
+        will-change: transform;
+      }
+    }
+
+    &.is-visible .line > span {
+      transform: none;
+    }
+  }
+
+  /* --- Image qui se dévoile du haut vers le bas, zoom qui se pose ---
+     Le rognage est posé sur l'enfant (`app-picture`) et non sur l'élément
+     observé : un élément entièrement rogné n'intersecte jamais la fenêtre. --- */
+  .reveal--clip {
+    opacity: 1;
+    transform: none;
+
+    app-picture {
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 1.1s $ease-in-out;
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    picture {
+      transform: scale(1.12);
+      transition: transform 1.5s $ease-out;
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    &.is-visible {
+      app-picture {
+        clip-path: inset(0 0 0 0);
+      }
+
+      picture {
+        transform: none;
+      }
+    }
+  }
+
+  /* --- Panneau bordeaux qui balaie l'image --- */
+  .reveal--wipe {
+    opacity: 1;
+    transform: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: var(--bordeaux);
+      transform: scaleX(1);
+      transform-origin: right center;
+      transition: transform 1s $ease-in-out;
+      transition-delay: var(--reveal-delay, 0ms);
+      pointer-events: none;
+    }
+
+    picture {
+      transform: scale(1.1);
+      transition: transform 1.6s $ease-out;
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    &.is-visible {
+      &::after {
+        transform: scaleX(0);
+      }
+
+      picture {
+        transform: none;
+      }
+    }
+  }
+
+  /* --- Enfants en cascade --- */
+  .reveal--stagger {
+    opacity: 1;
+    transform: none;
+
+    > * {
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+      transition:
+        opacity 0.6s ease,
+        transform 0.7s $ease-out;
+    }
+
+    @for $i from 1 through 24 {
+      > :nth-child(#{$i}) {
+        transition-delay: calc(var(--reveal-delay, 0ms) + #{$i * 45}ms);
+      }
+    }
+
+    &.is-visible > * {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* --- Parallaxe : l'image contenue est agrandie et suit le défilement --- */
+.parallax {
+  overflow: hidden;
+
+  app-picture {
+    transform: translate3d(0, var(--parallax, 0px), 0) scale(1.15);
+    will-change: transform;
+  }
+}
+
+/* --- Zoom doux de la photo au survol --- */
+.zoom-media {
+  overflow: hidden;
+
+  img {
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.anim .reveal,
+  html.anim .reveal--lines .line > span,
+  html.anim .reveal--clip app-picture,
+  html.anim .reveal--clip picture,
+  html.anim .reveal--wipe::after,
+  html.anim .reveal--wipe picture,
+  html.anim .reveal--stagger > * {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+
+  .parallax app-picture {
+    transform: none;
+  }
+
+  .btn::before,
+  .zoom-media img {
+    transition: none;
+  }
 }

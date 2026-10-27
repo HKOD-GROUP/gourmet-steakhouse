@@ -6,6 +6,8 @@ import { MAIN_ESTABLISHMENT, SITE } from '../../core/data/restaurant';
 import { breadcrumbJsonLd, restaurantJsonLd } from '../../core/data/structured-data';
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
 import { PictureComponent } from '../../shared/components/picture/picture.component';
+import { RevealDirective } from '../../shared/animation/reveal.directive';
+import { ParallaxDirective } from '../../shared/animation/parallax.directive';
 
 interface Chapter {
   title: string;
@@ -18,7 +20,7 @@ interface Chapter {
 @Component({
   selector: 'app-restaurant',
   standalone: true,
-  imports: [RouterLink, SiteShellComponent, PictureComponent],
+  imports: [RouterLink, SiteShellComponent, PictureComponent, RevealDirective, ParallaxDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.scss',
