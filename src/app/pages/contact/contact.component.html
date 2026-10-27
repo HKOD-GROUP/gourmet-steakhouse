@@ -1,0 +1,95 @@
+<app-site-shell>
+  <section class="section section--tight contact-intro" aria-labelledby="contact-titre">
+    <div class="container-site">
+      <h1 id="contact-titre" class="display-lg">Infos pratiques</h1>
+      <span class="rule contact-intro__rule" aria-hidden="true"></span>
+      <p class="lead contact-intro__lead">
+        Deux adresses dans le Val-d’Oise, ouvertes tous les jours, midi et soir. Réservation par
+        téléphone.
+      </p>
+    </div>
+  </section>
+
+  @for (e of establishments; track e.id; let i = $index) {
+    <section
+      class="section place"
+      [class.place--reverse]="i % 2 === 1"
+      [attr.aria-labelledby]="'place-' + e.id"
+    >
+      <div class="container-site place__grid">
+        <div class="place__text">
+          <h2 [id]="'place-' + e.id" class="display-md place__title">{{ e.name }}</h2>
+
+          <address class="place__address">
+            {{ e.streetAddress }}<br />
+            {{ e.postalCode }} {{ e.city }}
+          </address>
+
+          <a [href]="'tel:' + e.phoneHref" class="place__phone">{{ e.phone }}</a>
+
+          <table class="hours place__hours">
+            <caption class="visually-hidden">Horaires d’ouverture, {{ e.city }}</caption>
+            <tbody>
+              @for (slot of e.openingHours; track slot.label) {
+                <tr>
+                  <th scope="row">{{ slot.label }}</th>
+                  <td>{{ slot.opens }} – {{ slot.closes }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+
+          <div class="place__actions">
+            <a [href]="'tel:' + e.phoneHref" class="btn">Réserver par téléphone</a>
+            <a [href]="e.mapsUrl" class="btn btn--ghost" target="_blank" rel="noopener">Itinéraire</a>
+          </div>
+        </div>
+
+        <div class="place__photo">
+          <app-picture
+            folder="plats"
+            [name]="photo(e.id).name"
+            [alt]="photo(e.id).alt"
+            sizes="(max-width: 900px) calc(100vw - 48px), 520px"
+          />
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="section section--tight notes" aria-labelledby="notes-titre">
+    <div class="container-site">
+      <h2 id="notes-titre" class="display-md notes__title">Bon à savoir</h2>
+      <div class="notes__grid">
+        <div class="notes__item">
+          <h3 class="display-sm">Buffet à volonté</h3>
+          <p>
+            L’accès au buffet d’entrées est inclus avec chaque grillade. Le buffet seul est aussi
+            possible, midi et soir.
+          </p>
+        </div>
+        <div class="notes__item">
+          <h3 class="display-sm">Cuisine halal</h3>
+          <p>
+            Toutes nos viandes sont halal. Elles sont grillées au charbon de bois, à la demande,
+            dans nos deux établissements.
+          </p>
+        </div>
+        <div class="notes__item">
+          <h3 class="display-sm">Groupes et familles</h3>
+          <p>
+            Menu enfants et plateaux à partager pour 2 à 4 personnes. Pour une grande tablée,
+            appelez-nous : nous préparons votre table.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bordeaux section--tight cta" aria-labelledby="cta-titre">
+    <div class="container-site cta__inner">
+      <h2 id="cta-titre" class="display-md">Envie de voir la carte ?</h2>
+      <a routerLink="/carte" class="btn btn--light">Voir la carte</a>
+    </div>
+  </section>
+</app-site-shell>

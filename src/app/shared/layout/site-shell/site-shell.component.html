@@ -1,0 +1,93 @@
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="hdr" [class.hdr--open]="menuOpen()">
+  <div class="container-site hdr__inner">
+    <a routerLink="/" class="hdr__brand" aria-label="Gourmet Steakhouse, accueil">
+      <img
+        src="/images/logo/gourmet-steakhouse-logo-brun.png"
+        alt="Gourmet Steakhouse"
+        width="1734"
+        height="704"
+        class="hdr__logo"
+        draggable="false"
+      />
+    </a>
+
+    <nav class="hdr__nav" aria-label="Navigation principale" [attr.id]="'nav-principale'">
+      @for (link of links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="is-active"
+          class="hdr__link"
+          >{{ link.label }}</a
+        >
+      }
+      <a [href]="'tel:' + main.phoneHref" class="btn hdr__phone">{{ main.phone }}</a>
+    </nav>
+
+    <button
+      type="button"
+      class="hdr__toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="nav-principale"
+    >
+      {{ menuOpen() ? 'Fermer' : 'Menu' }}
+    </button>
+  </div>
+</header>
+
+<main id="contenu" class="main">
+  <ng-content></ng-content>
+</main>
+
+<footer class="ftr">
+  <div class="container-site">
+    <div class="ftr__grid">
+      <div class="ftr__brand">
+        <img
+          src="/images/logo/gourmet-steakhouse-logo-blanc.png"
+          alt="Gourmet Steakhouse"
+          width="1734"
+          height="704"
+          class="ftr__logo"
+          loading="lazy"
+          draggable="false"
+        />
+        <p class="ftr__tagline">{{ site.tagline }}. Cuisine halal.</p>
+      </div>
+
+      @for (e of establishments; track e.id) {
+        <div class="ftr__col">
+          <h2 class="display-sm ftr__title">{{ e.city }}</h2>
+          <address class="ftr__address">
+            {{ e.streetAddress }}<br />
+            {{ e.postalCode }} {{ e.city }}
+          </address>
+          <a [href]="'tel:' + e.phoneHref" class="ftr__phone">{{ e.phone }}</a>
+          <ul class="ftr__hours">
+            @for (slot of e.openingHours; track slot.label) {
+              <li>{{ slot.label }} : {{ slot.opens }} – {{ slot.closes }}</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <div class="ftr__col">
+        <h2 class="display-sm ftr__title">Le site</h2>
+        <ul class="ftr__links">
+          @for (link of links; track link.path) {
+            <li><a [routerLink]="link.path">{{ link.label }}</a></li>
+          }
+          <li><a routerLink="/mentions-legales">Mentions légales</a></li>
+          <li><a routerLink="/confidentialite">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ftr__bottom">
+      <span>© {{ year }} {{ site.legalName }}</span>
+      <span class="ftr__notice">L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</span>
+    </div>
+  </div>
+</footer>

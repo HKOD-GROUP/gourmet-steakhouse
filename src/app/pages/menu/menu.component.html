@@ -1,0 +1,133 @@
+<app-site-shell>
+  <!-- En-tête de page -->
+  <section class="section section--tight page-head" aria-labelledby="titre-carte">
+    <div class="container-site">
+      <h1 id="titre-carte" class="display-lg">La carte</h1>
+      <span class="rule page-head__rule" aria-hidden="true"></span>
+      <p class="lead page-head__lead">
+        Nos grillades sont cuites au charbon de bois et servies avec le buffet d’entrées à volonté :
+        chaque plat marqué « avec buffet » donne accès aux entrées turques, aux salades, aux plats
+        chauds et aux accompagnements, sans limite. Prix nets, service compris.
+      </p>
+      @if (buffet?.priceLunch !== undefined && buffet?.priceDinner !== undefined) {
+        <p class="page-head__key">
+          Buffet seul : <strong>{{ price(buffet!.priceLunch!) }}</strong> le midi,
+          <strong>{{ price(buffet!.priceDinner!) }}</strong> le soir.
+        </p>
+      }
+    </div>
+  </section>
+
+  <!-- Sommaire collant -->
+  <nav class="toc" aria-label="Sections de la carte">
+    <div class="container-site">
+      <ul class="toc__list">
+        @for (s of sections; track s.id) {
+          <li class="toc__item">
+            <a
+              class="toc__link"
+              [class.is-active]="activeSection() === s.id"
+              [attr.href]="'#' + s.id"
+              [attr.aria-current]="activeSection() === s.id ? 'location' : null"
+              (click)="goTo($event, s.id)"
+              >{{ s.title }}</a
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </nav>
+
+  <!-- La carte -->
+  <div class="container-site">
+    @for (group of groups; track group.id) {
+      <section class="group" [attr.aria-labelledby]="'groupe-' + group.id">
+        <h2 [id]="'groupe-' + group.id" class="display-lg group__title">{{ group.title }}</h2>
+
+        <div class="group__columns" [class.group__columns--drinks]="group.id === 'boissons'">
+          @for (section of group.sections; track section.id) {
+            <section
+              class="menu-section"
+              [id]="section.id"
+              data-menu-section
+              tabindex="-1"
+              [attr.aria-labelledby]="'titre-' + section.id"
+            >
+              <header class="menu-section__head">
+                <h3 [id]="'titre-' + section.id" class="display-md">{{ section.title }}</h3>
+                @if (section.note) {
+                  <span class="menu-section__note">{{ section.note }}</span>
+                }
+              </header>
+
+              @if (section.intro) {
+                <p class="menu-section__intro">{{ section.intro }}</p>
+              }
+
+              @if (section.columns; as cols) {
+                <div class="menu-cols" aria-hidden="true">
+                  <span class="menu-cols__label">{{ cols.lunch }}</span>
+                  <span class="menu-cols__label">{{ cols.dinner }}</span>
+                </div>
+              }
+
+              <ul class="menu-list">
+                @for (item of section.items; track item.name) {
+                  <li class="menu-item">
+                    <span class="menu-item__leader">
+                      <span class="menu-item__name">{{ item.name }}</span>
+                    </span>
+
+                    @if (item.price !== undefined) {
+                      <span class="menu-item__price">{{ price(item.price) }}</span>
+                    } @else if (item.priceLunch !== undefined && item.priceDinner !== undefined) {
+                      <span class="menu-item__prices menu-item__prices--two">
+                        <span class="menu-item__price">
+                          <span class="visually-hidden">{{ section.columns?.lunch ?? 'Midi' }} </span
+                          >{{ price(item.priceLunch) }}
+                        </span>
+                        <span class="menu-item__price">
+                          <span class="visually-hidden">{{ section.columns?.dinner ?? 'Soir' }} </span
+                          >{{ price(item.priceDinner) }}
+                        </span>
+                      </span>
+                    } @else if (item.variants?.length) {
+                      <span
+                        class="menu-item__prices menu-item__prices--variants"
+                        [class.menu-item__prices--stack]="item.variants!.length > 1"
+                      >
+                        @for (v of item.variants; track v.label) {
+                          <span class="menu-item__variant">
+                            <span class="menu-item__variant-label">{{ v.label }}</span>
+                            <span class="menu-item__price">{{ price(v.price) }}</span>
+                          </span>
+                        }
+                      </span>
+                    }
+
+                    @if (item.description) {
+                      <span class="menu-item__desc">{{ item.description }}</span>
+                    }
+                  </li>
+                }
+              </ul>
+            </section>
+          }
+        </div>
+      </section>
+    }
+
+    <p class="notice muted">{{ alcoholNotice }}</p>
+  </div>
+
+  <!-- Appel à l’action -->
+  <section class="section--bordeaux section--tight cta" aria-labelledby="titre-cta">
+    <div class="container-site cta__inner">
+      <h2 id="titre-cta" class="display-lg cta__title">Une question, une table pour un groupe ?</h2>
+      <div class="cta__actions">
+        <a class="btn btn--light" [href]="'tel:' + main.phoneHref">Appeler le {{ main.phone }}</a>
+        <a class="link cta__link" routerLink="/infos-pratiques">Adresse, horaires et accès</a>
+      </div>
+    </div>
+  </section>
+</app-site-shell>

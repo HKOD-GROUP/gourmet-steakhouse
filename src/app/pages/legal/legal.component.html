@@ -1,0 +1,74 @@
+<app-site-shell>
+  <section class="section" aria-labelledby="legal-titre">
+    <div class="container-site">
+      <article class="doc">
+        <h1 id="legal-titre" class="display-lg">Mentions légales</h1>
+        <span class="rule doc__rule" aria-hidden="true"></span>
+        <p class="doc__updated">Dernière mise à jour : octobre 2026</p>
+
+        <h2 class="display-md">Éditeur du site</h2>
+        <p>
+          Le site <a class="link" [href]="site.url">{{ site.domain }}</a> est édité par
+          <strong>{{ site.legalName }}</strong>, restaurant dont l’établissement principal est situé
+          à l’adresse suivante :
+        </p>
+        <address>
+          {{ site.legalName }}<br />
+          {{ main.streetAddress }}<br />
+          {{ main.postalCode }} {{ main.city }}<br />
+          Téléphone : <a class="link" [href]="'tel:' + main.phoneHref">{{ main.phone }}</a><br />
+          Courriel : <a class="link" [href]="'mailto:' + site.email">contact&#64;gourmet-steakhouse.fr</a>
+        </address>
+
+        <h2 class="display-md">Directeur de la publication</h2>
+        <p>
+          Le directeur de la publication est le gérant de {{ site.legalName }}. Il peut être
+          contacté par courriel à l’adresse
+          <a class="link" [href]="'mailto:' + site.email">contact&#64;gourmet-steakhouse.fr</a>.
+        </p>
+
+        <h2 class="display-md">Hébergement</h2>
+        <p>Site hébergé par Hkod group sur une infrastructure OVH, Union européenne.</p>
+
+        <h2 class="display-md">Propriété intellectuelle</h2>
+        <p>
+          L’ensemble des éléments composant ce site (textes, photographies, logo, mise en page) est
+          la propriété de {{ site.legalName }} ou fait l’objet d’une autorisation d’utilisation.
+          Les photographies des plats et le logo appartiennent au restaurant.
+        </p>
+        <p>
+          Toute reproduction, représentation, modification ou diffusion, totale ou partielle, de
+          ces éléments, par quelque procédé que ce soit, sans l’accord écrit préalable de
+          {{ site.legalName }}, est interdite.
+        </p>
+
+        <h2 class="display-md">Responsabilité</h2>
+        <p>
+          Les informations publiées sur ce site sont fournies à titre indicatif. {{ site.legalName }}
+          s’efforce d’en assurer l’exactitude et la mise à jour, sans pouvoir garantir l’absence
+          d’erreur ou d’omission.
+        </p>
+        <p>
+          Les prix de la carte sont donnés à titre indicatif et peuvent évoluer. Seuls les prix
+          affichés au restaurant font foi. Les plats et formules proposés dépendent des arrivages
+          et peuvent varier selon l’établissement et le service.
+        </p>
+        <p>
+          Le site contient des liens vers des services tiers (itinéraire Google Maps).
+          {{ site.legalName }} n’exerce aucun contrôle sur ces services et décline toute
+          responsabilité quant à leur contenu ou à leur fonctionnement.
+        </p>
+
+        <h2 class="display-md">Données personnelles</h2>
+        <p>
+          Ce site ne collecte aucune donnée personnelle et n’utilise aucun cookie de suivi. Pour
+          en savoir plus, consultez notre
+          <a class="link" routerLink="/confidentialite">politique de confidentialité</a>.
+        </p>
+
+        <h2 class="display-md">Crédits</h2>
+        <p>Site réalisé par Hkod group.</p>
+      </article>
+    </div>
+  </section>
+</app-site-shell>

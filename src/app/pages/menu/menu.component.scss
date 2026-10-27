@@ -1,0 +1,283 @@
+/* Page « La carte » : blanc & bordeaux, esprit carte de brasserie. */
+
+:host {
+  display: block;
+}
+
+/* ---------- En-tête de page ---------- */
+.page-head__rule {
+  margin-top: 22px;
+}
+
+.page-head__lead {
+  max-width: 60ch;
+  margin-top: 24px;
+}
+
+.page-head__key {
+  margin-top: 20px;
+  font-size: 18px;
+
+  strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 23px;
+    letter-spacing: 0.02em;
+    color: var(--bordeaux);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---------- Sommaire collant ---------- */
+.toc {
+  position: sticky;
+  top: 84px;
+  z-index: 40;
+  background: var(--blanc);
+  border-top: 1px solid var(--filet);
+  border-bottom: 1px solid var(--filet);
+}
+
+.toc__list {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding: 0 var(--gutter);
+  white-space: nowrap;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.toc__item {
+  flex: 0 0 auto;
+}
+
+.toc__link {
+  display: block;
+  padding: 15px 0 13px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  color: var(--encre);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    color: var(--bordeaux);
+  }
+
+  &.is-active {
+    color: var(--bordeaux);
+    border-bottom-color: var(--bordeaux);
+  }
+}
+
+/* ---------- Groupes et sections ---------- */
+.group {
+  padding-top: clamp(48px, 7vw, 88px);
+}
+
+.group__title {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--filet);
+}
+
+.menu-section {
+  padding: 36px 0 8px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  /* Point d’arrivée des ancres : sous l’en-tête du site et le sommaire. */
+  scroll-margin-top: 150px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.menu-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+
+.menu-section__note {
+  font-style: italic;
+  font-size: 16px;
+  color: var(--gris);
+}
+
+.menu-section__intro {
+  margin-top: 12px;
+  max-width: 56ch;
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--gris);
+}
+
+/* En-tête des colonnes midi / soir, aligné sur les prix */
+.menu-cols {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: end;
+  column-gap: 20px;
+  margin-top: 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--filet);
+}
+
+.menu-cols__label {
+  min-width: 64px;
+  text-align: right;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--gris);
+}
+
+.menu-section__intro + .menu-list,
+.menu-section__head + .menu-list {
+  margin-top: 10px;
+}
+
+.menu-item + .menu-item {
+  border-top: 1px solid var(--filet);
+}
+
+.menu-item__prices--two .menu-item__price {
+  min-width: 64px;
+  text-align: right;
+}
+
+/* Déclinaisons (contenances) : libellé en Newsreader, prix en Big Shoulders */
+.menu-item__prices--variants {
+  column-gap: 0;
+}
+
+.menu-item__variant {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  white-space: nowrap;
+
+  & + & {
+    margin-left: 14px;
+    padding-left: 14px;
+    border-left: 1px solid var(--filet);
+  }
+}
+
+.menu-item__variant-label {
+  font-size: 15px;
+  color: var(--gris);
+}
+
+/* ---------- Mention légale ---------- */
+.notice {
+  margin-top: clamp(40px, 6vw, 64px);
+  padding: 20px 0 clamp(48px, 7vw, 88px);
+  border-top: 1px solid var(--filet);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+/* ---------- Appel à l’action ---------- */
+.cta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px 48px;
+}
+
+.cta__title {
+  max-width: 14ch;
+}
+
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+}
+
+.cta__link {
+  color: var(--blanc);
+
+  &:hover {
+    color: var(--lin);
+  }
+}
+
+/* ---------- Mise en page multicolonne (tablette et plus) ---------- */
+@media (min-width: 700px) {
+  .group__columns--drinks {
+    columns: 2;
+    column-gap: 64px;
+  }
+}
+
+@media (min-width: 900px) {
+  .group__columns {
+    columns: 2;
+    column-gap: 72px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .group__columns--drinks {
+    columns: 3;
+    column-gap: 56px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .toc {
+    top: 72px;
+  }
+
+  .menu-section {
+    scroll-margin-top: 136px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toc__list {
+    gap: 22px;
+  }
+
+  .toc__link {
+    font-size: 18px;
+  }
+
+  /* Plusieurs contenances : une par ligne, alignées à droite */
+  .menu-item__prices--stack {
+    grid-auto-flow: row;
+    row-gap: 4px;
+    justify-items: end;
+  }
+
+  .menu-item__prices--stack .menu-item__variant + .menu-item__variant {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .cta__actions {
+    width: 100%;
+  }
+
+  .cta__actions .btn {
+    width: 100%;
+  }
+}

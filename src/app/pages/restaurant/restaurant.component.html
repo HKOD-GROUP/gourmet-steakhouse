@@ -1,0 +1,63 @@
+<app-site-shell>
+  <section class="section section--tight intro" aria-labelledby="resto-title">
+    <div class="container-site">
+      <h1 id="resto-title" class="display-lg">Le restaurant</h1>
+      <span class="rule intro__rule"></span>
+      <p class="lead intro__lead">
+        Un steakhouse halal où la viande passe par la braise et où le repas commence au
+        buffet. À Villiers-le-Bel et à Fosses, tous les jours, midi et soir.
+      </p>
+    </div>
+  </section>
+
+  @for (chapter of chapters; track chapter.title; let i = $index) {
+    <section class="chapter" [class.chapter--reverse]="i % 2 === 1" [attr.aria-labelledby]="'chapitre-' + i">
+      <div class="chapter__media">
+        <app-picture
+          folder="plats"
+          [name]="chapter.image"
+          [alt]="chapter.alt"
+          sizes="(max-width: 900px) 100vw, 50vw"
+          [loading]="i === 0 ? 'eager' : 'lazy'"
+        />
+      </div>
+      <div class="chapter__text">
+        <h2 [id]="'chapitre-' + i" class="display-lg">{{ chapter.title }}</h2>
+        <p>{{ chapter.text }}</p>
+      </div>
+    </section>
+  }
+
+  <section class="section galerie" aria-labelledby="galerie-title">
+    <div class="container-site">
+      <h2 id="galerie-title" class="display-lg">En images</h2>
+      <ul class="galerie__grid">
+        @for (photo of gallery; track photo.image) {
+          <li>
+            <app-picture
+              folder="plats"
+              [name]="photo.image"
+              [alt]="photo.alt"
+              sizes="(max-width: 640px) 50vw, 33vw"
+            />
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight section--bordeaux" aria-labelledby="venir-title">
+    <div class="container-site venir">
+      <div>
+        <h2 id="venir-title" class="display-lg">On vous attend</h2>
+        <p class="venir__text">
+          Réservation par téléphone, pour deux comme pour vingt. Parking gratuit sur place.
+        </p>
+      </div>
+      <div class="venir__actions">
+        <a [href]="'tel:' + main.phoneHref" class="btn btn--light">Appeler le {{ main.phone }}</a>
+        <a routerLink="/carte" class="btn btn--light-ghost">Voir la carte</a>
+      </div>
+    </div>
+  </section>
+</app-site-shell>

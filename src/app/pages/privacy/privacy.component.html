@@ -1,0 +1,89 @@
+<app-site-shell>
+  <section class="section" aria-labelledby="privacy-titre">
+    <div class="container-site">
+      <article class="doc">
+        <h1 id="privacy-titre" class="display-lg">Politique de confidentialité</h1>
+        <span class="rule doc__rule" aria-hidden="true"></span>
+        <p class="doc__updated">Dernière mise à jour : octobre 2026</p>
+
+        <h2 class="display-md">En résumé</h2>
+        <p>
+          Le site <a class="link" [href]="site.url">{{ site.domain }}</a> est un site de
+          présentation. Il ne collecte aucune donnée personnelle, ne comporte aucun formulaire et
+          n’utilise aucun cookie de suivi ni traceur tiers. Vous pouvez le consulter sans créer de
+          compte ni fournir la moindre information.
+        </p>
+
+        <h2 class="display-md">Responsable du traitement</h2>
+        <p>
+          Le responsable du site est {{ site.legalName }}, {{ main.streetAddress }},
+          {{ main.postalCode }} {{ main.city }}. Pour toute question relative à vos données,
+          écrivez à
+          <a class="link" [href]="'mailto:' + site.email">contact&#64;gourmet-steakhouse.fr</a>.
+        </p>
+
+        <h2 class="display-md">Données collectées</h2>
+        <p>
+          Aucune. Le site ne propose ni formulaire de contact, ni réservation en ligne, ni lettre
+          d’information, ni espace client. Nous ne recueillons ni nom, ni adresse électronique, ni
+          numéro de téléphone.
+        </p>
+        <p>
+          Comme pour tout site web, notre hébergeur peut conserver des journaux techniques de
+          connexion (adresse IP, pages consultées, horodatage) pour des raisons de sécurité et de
+          bon fonctionnement du service. Ces journaux ne sont pas exploités à des fins de suivi ou
+          de publicité.
+        </p>
+
+        <h2 class="display-md">Cookies et traceurs</h2>
+        <p>
+          Le site ne dépose aucun cookie de suivi, de mesure d’audience ou de publicité, et ne
+          charge aucun script tiers. Aucun bandeau de consentement n’est donc nécessaire.
+        </p>
+        <p>
+          Les polices de caractères sont auto-hébergées : votre navigateur ne contacte aucun
+          service extérieur pour les afficher.
+        </p>
+
+        <h2 class="display-md">Points de contact avec des services tiers</h2>
+        <p>Deux actions du site vous font quitter nos pages ou solliciter un service extérieur :</p>
+        <ul>
+          <li>
+            <strong>L’appel téléphonique.</strong> Les liens « Réserver par téléphone » ouvrent
+            l’application d’appel de votre appareil. Aucune information ne transite par le site.
+          </li>
+          <li>
+            <strong>Le lien « Itinéraire ».</strong> Il ouvre Google Maps dans un nouvel onglet. À
+            partir de ce moment, votre navigation est soumise à la politique de confidentialité de
+            Google, sur laquelle nous n’avons aucun contrôle. Nous n’intégrons aucune carte dans nos
+            pages.
+          </li>
+        </ul>
+
+        <h2 class="display-md">Vos droits</h2>
+        <p>
+          Conformément au Règlement général sur la protection des données (RGPD) et à la loi
+          Informatique et Libertés, vous disposez d’un droit d’accès, de rectification,
+          d’effacement, de limitation et d’opposition concernant les données qui vous concernent.
+          Le site ne collectant aucune donnée personnelle, ces droits portent essentiellement sur
+          les échanges que vous pourriez avoir avec nous par courriel ou par téléphone.
+        </p>
+        <p>
+          Pour exercer ces droits, écrivez à
+          <a class="link" [href]="'mailto:' + site.email">contact&#64;gourmet-steakhouse.fr</a>.
+          Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une
+          réclamation auprès de la Commission nationale de l’informatique et des libertés (CNIL),
+          <a class="link" href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>.
+        </p>
+
+        <h2 class="display-md">Modifications</h2>
+        <p>
+          Cette politique peut être mise à jour si le site évolue. La date de dernière mise à jour
+          figure en haut de cette page. Les
+          <a class="link" routerLink="/mentions-legales">mentions légales</a> complètent ce
+          document.
+        </p>
+      </article>
+    </div>
+  </section>
+</app-site-shell>

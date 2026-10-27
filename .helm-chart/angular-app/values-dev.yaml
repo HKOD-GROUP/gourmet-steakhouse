@@ -1,0 +1,26 @@
+# Overrides DEV du chart angular-app — déployé sur dev.gourmet-steakhouse.fr.
+# Usage : helm upgrade --install gourmet-steakhouse-dev .helm-chart/angular-app -f .helm-chart/angular-app/values-dev.yaml
+# Le reste des valeurs vient de values.yaml. L'image dev est buildée avec
+# --build-arg NG_CONFIG=dev (siteUrl = https://dev.gourmet-steakhouse.fr).
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/hermann93360/gourmet-steakhouse
+  tag: "dev" # écrasé par le workflow (--set image.tag=dev-<sha>)
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: dev.gourmet-steakhouse.fr
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - dev.gourmet-steakhouse.fr
+      secretName: dev-gourmet-steakhouse-tls

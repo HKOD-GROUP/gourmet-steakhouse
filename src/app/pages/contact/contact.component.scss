@@ -1,0 +1,165 @@
+/* Infos pratiques : adresses, horaires, réservation. */
+
+.contact-intro {
+  padding-bottom: 0;
+
+  &__rule {
+    margin-top: 20px;
+  }
+
+  &__lead {
+    max-width: 38rem;
+    margin-top: 24px;
+  }
+}
+
+/* Un établissement : texte / photo */
+.place {
+  border-bottom: 1px solid var(--filet);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  &__text {
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__address {
+    margin-top: 20px;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  &__phone {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0.03em;
+    color: var(--bordeaux);
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+
+    &:hover {
+      color: var(--bordeaux-fonce);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+  }
+
+  &__hours {
+    margin-top: 28px;
+    max-width: 26rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+
+    .btn {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__photo {
+    max-width: 520px;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    &__photo {
+      justify-self: end;
+    }
+
+    &__actions .btn {
+      flex: 0 0 auto;
+    }
+
+    /* Alternance : photo à gauche, texte à droite */
+    &--reverse &__text {
+      order: 2;
+    }
+
+    &--reverse &__photo {
+      order: 1;
+      justify-self: start;
+    }
+  }
+}
+
+/* Bon à savoir : trois colonnes de texte */
+.notes {
+  border-bottom: 1px solid var(--filet);
+
+  &__title {
+    margin: 0 0 32px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  &__item {
+    padding-top: 16px;
+    border-top: 1px solid var(--filet);
+
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      margin: 12px 0 0;
+      color: var(--gris);
+      line-height: 1.55;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  }
+}
+
+/* Bande bordeaux vers la carte */
+.cta {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    &__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
