@@ -31,9 +31,9 @@ export const SITE = {
   name: 'Gourmet Steakhouse',
   domain: 'gourmet-steakhouse.fr',
   url: 'https://gourmet-steakhouse.fr',
-  tagline: 'Grillades au charbon de bois et buffet à volonté',
+  tagline: 'Buffet à volonté et grillades au charbon de bois',
   description:
-    'Gourmet Steakhouse, restaurant halal à Fosses (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec un buffet d’entrées à volonté. Ouvert midi et soir, 7 jours sur 7.',
+    'Gourmet Steakhouse à Fosses (95) : buffet à volonté avec entrées froides, entrées chaudes et plats cuisinés, et à la carte, côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois. Ouvert midi et soir, 7 jours sur 7.',
   legalName: 'Gourmet Steakhouse',
   email: 'contact@gourmet-steakhouse.fr',
   socials: {

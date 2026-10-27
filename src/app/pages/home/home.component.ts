@@ -11,7 +11,7 @@ import { MarqueeComponent } from '../../shared/components/marquee/marquee.compon
 import { RevealDirective } from '../../shared/animation/reveal.directive';
 import { ParallaxDirective } from '../../shared/animation/parallax.directive';
 
-/** Page d'accueil : la braise, le buffet, les incontournables, les deux adresses. */
+/** Page d'accueil : le buffet, la braise, les incontournables, l'adresse. */
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -26,9 +26,10 @@ export class HomeComponent {
   readonly establishments = ESTABLISHMENTS;
   readonly dishes = SIGNATURE_DISHES;
   readonly marquee = [
-    'Grillades au charbon de bois',
     'Buffet à volonté',
-    'Cuisine halal',
+    'Entrées froides, entrées chaudes, plats cuisinés',
+    'Grillades au charbon de bois',
+    'Plats préparés à la minute',
     'Ouvert 7 jours sur 7',
     'Fosses, Val-d’Oise',
     'Plateaux à partager',
@@ -36,10 +37,10 @@ export class HomeComponent {
 
   constructor() {
     inject(SeoService).updateMetaTags({
-      title: 'Steakhouse halal à Fosses, grillades au charbon de bois et buffet à volonté',
+      title: 'Buffet à volonté et grillades au charbon de bois à Fosses',
       description: SITE.description,
       keywords:
-        'steakhouse halal, restaurant Fosses, grillades charbon de bois, buffet à volonté, côte de bœuf, restaurant turc 95, Val-d’Oise, iskender, adana',
+        'buffet à volonté Fosses, restaurant Fosses, grillades charbon de bois, steakhouse halal, côte de bœuf, restaurant turc 95, Val-d’Oise, iskender, adana',
       jsonLd: [
         {
           '@context': 'https://schema.org',

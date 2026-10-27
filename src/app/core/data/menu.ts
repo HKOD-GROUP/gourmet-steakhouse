@@ -1,7 +1,7 @@
 /**
  * La carte du Gourmet Steakhouse, retranscrite depuis le menu papier (octobre 2026).
  * Les prix ne sont volontairement pas publiés sur le site : seule la carte au restaurant fait foi.
- * « Avec buffet » = accès au buffet d'entrées à volonté inclus.
+ * Deux offres distinctes : le buffet à volonté (indépendant) et les grillades / plats à la carte.
  */
 
 export interface MenuItem {
@@ -12,7 +12,7 @@ export interface MenuItem {
 export interface MenuSection {
   id: string;
   title: string;
-  /** Mention sous le titre, ex. « Avec buffet » */
+  /** Mention sous le titre, ex. « À la carte » */
   note?: string;
   /** Texte d'intro facultatif */
   intro?: string;
@@ -27,14 +27,35 @@ export interface MenuGroup {
 
 export const MENU: MenuGroup[] = [
   {
+    id: 'buffet',
+    title: 'Buffet à volonté',
+    sections: [
+      {
+        id: 'buffet-a-volonte',
+        title: 'Le buffet',
+        note: 'Servi midi et soir',
+        intro:
+          'Le buffet se suffit à lui-même : on en profite sans rien commander d’autre. On se sert, on revient, on compose son assiette comme on veut.',
+        items: [
+          { name: 'Entrées froides' },
+          { name: 'Entrées chaudes' },
+          {
+            name: 'Plats cuisinés',
+            description: 'Lasagnes, bœuf accompagné de riz et d’autres préparations',
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: 'grillades',
-    title: 'Grillades et plats',
+    title: 'Grillades et plats à la carte',
     sections: [
       {
         id: 'grillades',
         title: 'Grillades',
-        note: 'Avec buffet',
-        intro: 'Cuites au charbon de bois, servies avec le buffet d’entrées à volonté.',
+        note: 'À la carte',
+        intro: 'Viandes cuites au charbon de bois, à la demande. Une offre distincte du buffet.',
         items: [
           { name: 'Brochette de poulet' },
           { name: 'Brochette d’agneau' },
@@ -51,7 +72,7 @@ export const MENU: MenuGroup[] = [
       {
         id: 'poisson',
         title: 'Poisson',
-        note: 'Avec buffet',
+        note: 'À la carte',
         items: [
           { name: 'Daurade' },
           { name: 'Pavé de saumon' },
@@ -60,14 +81,14 @@ export const MENU: MenuGroup[] = [
       {
         id: 'formule-mixte',
         title: 'Formule mixte',
-        note: 'Une personne, avec buffet',
+        note: 'Une personne',
         intro: '½ brochette de poulet, ½ brochette d’agneau, ½ adana kebab, 1 côtelette d’agneau, 1 aile de poulet.',
         items: [{ name: 'Formule mixte une personne' }],
       },
       {
         id: 'plateau-mixte',
         title: 'Plateau mixte',
-        note: 'Avec buffet',
+        note: 'À partager',
         intro: 'L’assortiment de nos grillades à partager, dressé sur plateau.',
         items: [
           { name: '1 personne' },
@@ -77,16 +98,9 @@ export const MENU: MenuGroup[] = [
         ],
       },
       {
-        id: 'buffet-seul',
-        title: 'Buffet seul',
-        note: 'Sans grillades',
-        intro: 'Entrées turques traditionnelles, salades fraîches, plats chauds et accompagnements, à volonté.',
-        items: [{ name: 'Buffet à volonté' }],
-      },
-      {
         id: 'plats-speciaux',
         title: 'Plats spéciaux Gourmet',
-        note: 'Avec buffet',
+        note: 'Préparés à la minute',
         items: [
           {
             name: 'Ali nazik',
@@ -101,19 +115,16 @@ export const MENU: MenuGroup[] = [
       {
         id: 'burgers',
         title: 'Burgers',
-        note: 'Avec buffet',
         items: [{ name: 'Burger maison' }],
       },
       {
         id: 'tapas',
         title: 'Tapas',
-        note: 'Sans buffet',
         items: [{ name: 'Tapas pour 4 personnes' }],
       },
       {
         id: 'menu-enfants',
         title: 'Menu enfants',
-        note: 'Avec buffet',
         items: [
           { name: 'Hamburger' },
           { name: 'Nuggets' },

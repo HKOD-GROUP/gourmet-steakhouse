@@ -33,9 +33,9 @@ export class ContactComponent {
     inject(SeoService).updateMetaTags({
       title: 'Infos pratiques : adresse, horaires, réservation',
       description:
-        'Adresse, horaires et téléphone du Gourmet Steakhouse, restaurant halal à Fosses (Val-d’Oise). Ouvert 7 jours sur 7 midi et soir, réservation par téléphone.',
+        'Adresse, horaires et téléphone du Gourmet Steakhouse, buffet à volonté et grillades à Fosses (Val-d’Oise). Ouvert 7 jours sur 7 midi et soir, réservation par téléphone.',
       keywords:
-        'restaurant halal Fosses, steakhouse Val-d’Oise, horaires, réservation, grillades charbon de bois',
+        'restaurant Fosses, buffet à volonté, steakhouse Val-d’Oise, horaires, réservation, grillades charbon de bois',
       jsonLd: [
         ...allRestaurantsJsonLd(),
         breadcrumbJsonLd([{ name: 'Infos pratiques', path: '/infos-pratiques' }]),

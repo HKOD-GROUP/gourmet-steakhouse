@@ -407,8 +407,10 @@ html.anim {
     .line {
       display: block;
       overflow: hidden;
-      padding-bottom: 0.06em;
-      margin-bottom: -0.06em;
+      /* Marge interne compensée : les accents des capitales et les jambages
+         dépassent la boîte de ligne (line-height 0,9) et seraient rognés. */
+      padding: 0.16em 0 0.06em;
+      margin: -0.16em 0 -0.06em;
 
       > span {
         display: block;

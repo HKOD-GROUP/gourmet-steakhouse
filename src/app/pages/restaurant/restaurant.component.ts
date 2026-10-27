@@ -16,7 +16,7 @@ interface Chapter {
   alt: string;
 }
 
-/** Page « Le restaurant » : la braise, le buffet, les plats, la galerie. */
+/** Page « Le restaurant » : le buffet, la braise, les plats, la galerie. */
 @Component({
   selector: 'app-restaurant',
   standalone: true,
@@ -31,18 +31,18 @@ export class RestaurantComponent {
 
   readonly chapters: Chapter[] = [
     {
-      title: 'La braise',
-      text:
-        'Tout part du gril au charbon de bois. Les pièces de bœuf y sont saisies à la demande, les brochettes tournent au-dessus des braises, l’adana prend sa croûte. Pas de plancha, pas de four : la fumée, la chaleur vive et le temps qu’il faut.',
-      image: 'cuisson-au-charbon-de-bois-entrecote-adana',
-      alt: 'Entrecôte et brochette adana sur le gril au charbon de bois',
-    },
-    {
       title: 'Le buffet',
       text:
-        'Avant la viande, le buffet. Mezzés turcs, salades fraîches, boulgour, légumes, plats chauds et accompagnements : on se sert, on revient, on compose son assiette comme on veut. Il est compris avec chaque grillade et se prend aussi seul.',
+        'Le repas peut commencer et finir au buffet. Entrées froides, entrées chaudes, plats cuisinés comme les lasagnes ou le bœuf accompagné de riz : on se sert, on revient, on compose son assiette comme on veut. Il se suffit à lui-même, sans rien commander d’autre.',
       image: 'assiette-buffet-boulgour-legumes-onion-rings',
       alt: 'Assiette composée au buffet : boulgour, brocolis, chou-fleur et onion rings',
+    },
+    {
+      title: 'La braise',
+      text:
+        'Tout part du gril au charbon de bois. Les pièces de bœuf y sont saisies à la demande, les brochettes tournent au-dessus des braises, l’adana prend sa croûte. Pas de plancha, pas de four : la fumée, la chaleur vive et le temps qu’il faut. Les grillades se commandent à la carte, indépendamment du buffet.',
+      image: 'cuisson-au-charbon-de-bois-entrecote-adana',
+      alt: 'Entrecôte et brochette adana sur le gril au charbon de bois',
     },
     {
       title: 'À partager',
@@ -71,11 +71,11 @@ export class RestaurantComponent {
 
   constructor() {
     inject(SeoService).updateMetaTags({
-      title: 'Le restaurant : la braise, le buffet et la cuisine turque',
+      title: 'Le restaurant : le buffet, la braise et la cuisine turque',
       description:
-        'Découvrez le Gourmet Steakhouse à Fosses : un gril au charbon de bois, un buffet d’entrées à volonté, des plateaux à partager et des spécialités turques servies en plat de fonte. Cuisine halal.',
+        'Découvrez le Gourmet Steakhouse à Fosses : un buffet à volonté d’entrées froides, d’entrées chaudes et de plats cuisinés, un gril au charbon de bois pour les grillades à la carte, des plateaux à partager et des spécialités turques en plat de fonte.',
       keywords:
-        'restaurant halal Fosses, grill charbon de bois, buffet turc à volonté, plateau mixte, iskender, restaurant familial 95',
+        'buffet à volonté Fosses, restaurant halal Fosses, grill charbon de bois, plateau mixte, iskender, restaurant familial 95',
       jsonLd: [restaurantJsonLd(), breadcrumbJsonLd([{ name: 'Le restaurant', path: '/le-restaurant' }])],
     });
   }

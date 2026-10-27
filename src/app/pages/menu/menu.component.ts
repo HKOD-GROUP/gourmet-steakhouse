@@ -41,11 +41,11 @@ export class MenuComponent {
 
   constructor() {
     inject(SeoService).updateMetaTags({
-      title: 'La carte : grillades, buffet et boissons',
+      title: 'La carte : buffet à volonté, grillades et boissons',
       description:
-        'La carte du Gourmet Steakhouse, steakhouse halal à Fosses (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec le buffet d’entrées à volonté. Plats spéciaux, menu enfants, cocktails, vins et boissons.',
+        'La carte du Gourmet Steakhouse à Fosses (95) : buffet à volonté avec entrées froides, entrées chaudes et plats cuisinés, et à la carte, côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois. Plats spéciaux, menu enfants, cocktails, vins et boissons.',
       keywords:
-        'carte steakhouse halal Fosses, côte de bœuf halal, entrecôte, brochettes, buffet à volonté, restaurant halal 95, grillades charbon de bois',
+        'carte steakhouse Fosses, buffet à volonté, entrées froides, entrées chaudes, côte de bœuf halal, entrecôte, brochettes, restaurant halal 95, grillades charbon de bois',
       jsonLd: [menuJsonLd(), breadcrumbJsonLd([{ name: 'La carte', path: '/carte' }])],
     });
 

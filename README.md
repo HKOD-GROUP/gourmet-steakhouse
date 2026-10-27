@@ -1,6 +1,6 @@
 # gourmet-steakhouse
 
-Site vitrine du restaurant Gourmet Steakhouse (steakhouse halal, grillades au charbon de bois et buffet à volonté, Fosses dans le Val-d’Oise).
+Site vitrine du restaurant Gourmet Steakhouse (buffet à volonté et grillades au charbon de bois à la carte, viandes halal, Fosses dans le Val-d’Oise).
 
 Application Angular 18 standalone avec SSR (Angular SSR / Express, port 4000), prérendue au build, déployée sur Kubernetes via Helm. Socle technique repris du projet `orvya`.
 
