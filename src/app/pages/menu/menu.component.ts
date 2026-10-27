@@ -7,13 +7,12 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { formatNumber } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
 import { RevealDirective } from '../../shared/animation/reveal.directive';
 import { SeoService } from '../../core/services/seo.service';
-import { ALCOHOL_NOTICE, MENU, MenuItem, MenuSection } from '../../core/data/menu';
+import { ALCOHOL_NOTICE, MENU, MenuSection } from '../../core/data/menu';
 import { MAIN_ESTABLISHMENT } from '../../core/data/restaurant';
 import { breadcrumbJsonLd, menuJsonLd } from '../../core/data/structured-data';
 
@@ -37,9 +36,6 @@ export class MenuComponent {
   readonly main = MAIN_ESTABLISHMENT;
   readonly alcoholNotice = ALCOHOL_NOTICE;
 
-  /** Prix du buffet seul (midi / soir), lus dans la section `buffet-seul`. */
-  readonly buffet: MenuItem | undefined = this.sections.find((s) => s.id === 'buffet-seul')?.items[0];
-
   /** Identifiant de la section visible à l’écran (souligné dans le sommaire). */
   readonly activeSection = signal<string | null>(null);
 
@@ -47,9 +43,9 @@ export class MenuComponent {
     inject(SeoService).updateMetaTags({
       title: 'La carte : grillades, buffet et boissons',
       description:
-        'La carte du Gourmet Steakhouse, steakhouse halal à Villiers-le-Bel (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec le buffet d’entrées à volonté. Prix midi et soir, menu enfants, cocktails, vins et boissons.',
+        'La carte du Gourmet Steakhouse, steakhouse halal à Fosses (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec le buffet d’entrées à volonté. Plats spéciaux, menu enfants, cocktails, vins et boissons.',
       keywords:
-        'carte steakhouse halal Villiers-le-Bel, côte de bœuf halal, entrecôte, brochettes, buffet à volonté, prix, restaurant halal 95, grillades charbon de bois',
+        'carte steakhouse halal Fosses, côte de bœuf halal, entrecôte, brochettes, buffet à volonté, restaurant halal 95, grillades charbon de bois',
       jsonLd: [menuJsonLd(), breadcrumbJsonLd([{ name: 'La carte', path: '/carte' }])],
     });
 
@@ -91,11 +87,6 @@ export class MenuComponent {
     });
   }
 
-  /** Prix en français : « 17,50 € », « 70 € » (espace insécable avant le symbole). */
-  price(value: number): string {
-    const digits = Number.isInteger(value) ? '1.0-0' : '1.2-2';
-    return `${formatNumber(value, 'fr-FR', digits)} €`;
-  }
 
   /**
    * Clic sur une ancre du sommaire : défilement vers la section sans passer

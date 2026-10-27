@@ -10,17 +10,13 @@ import { RevealDirective } from '../../shared/animation/reveal.directive';
 
 /** Photo illustrant chaque établissement (repli sur la première si l'id est inconnu). */
 const PHOTOS: Record<string, { name: string; alt: string }> = {
-  'villiers-le-bel': {
-    name: 'table-cote-de-boeuf-adana-iskender',
-    alt: 'Table dressée avec côte de bœuf, adana et iskender kebab au Gourmet Steakhouse de Villiers-le-Bel',
-  },
   fosses: {
-    name: 'plateau-grillades-mixtes-piments-grilles',
-    alt: 'Plateau de grillades mixtes et piments grillés au Gourmet Steakhouse de Fosses',
+    name: 'table-cote-de-boeuf-adana-iskender',
+    alt: 'Table dressée avec côte de bœuf, adana et iskender kebab au Gourmet Steakhouse de Fosses',
   },
 };
 
-const DEFAULT_PHOTO = PHOTOS['villiers-le-bel'];
+const DEFAULT_PHOTO = PHOTOS['fosses'];
 
 @Component({
   selector: 'app-contact',
@@ -35,11 +31,11 @@ export class ContactComponent {
 
   constructor() {
     inject(SeoService).updateMetaTags({
-      title: 'Infos pratiques : adresses, horaires, réservation',
+      title: 'Infos pratiques : adresse, horaires, réservation',
       description:
-        'Adresses, horaires et téléphone du Gourmet Steakhouse, restaurant halal à Villiers-le-Bel et à Fosses (Val-d’Oise). Ouvert 7 jours sur 7 midi et soir, réservation par téléphone.',
+        'Adresse, horaires et téléphone du Gourmet Steakhouse, restaurant halal à Fosses (Val-d’Oise). Ouvert 7 jours sur 7 midi et soir, réservation par téléphone.',
       keywords:
-        'restaurant halal Villiers-le-Bel, restaurant halal Fosses, steakhouse Val-d’Oise, horaires, réservation, grillades charbon de bois',
+        'restaurant halal Fosses, steakhouse Val-d’Oise, horaires, réservation, grillades charbon de bois',
       jsonLd: [
         ...allRestaurantsJsonLd(),
         breadcrumbJsonLd([{ name: 'Infos pratiques', path: '/infos-pratiques' }]),

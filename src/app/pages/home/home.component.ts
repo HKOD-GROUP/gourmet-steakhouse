@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../../core/services/seo.service';
 import { ESTABLISHMENTS, MAIN_ESTABLISHMENT, SITE } from '../../core/data/restaurant';
-import { MENU, SIGNATURE_DISHES } from '../../core/data/menu';
+import { SIGNATURE_DISHES } from '../../core/data/menu';
 import { allRestaurantsJsonLd } from '../../core/data/structured-data';
 import { SiteShellComponent } from '../../shared/layout/site-shell/site-shell.component';
 import { PictureComponent } from '../../shared/components/picture/picture.component';
@@ -30,33 +30,16 @@ export class HomeComponent {
     'Buffet à volonté',
     'Cuisine halal',
     'Ouvert 7 jours sur 7',
-    'Villiers-le-Bel',
-    'Fosses',
+    'Fosses, Val-d’Oise',
     'Plateaux à partager',
   ];
 
-  /** Repères de prix lus dans la carte, pour ne jamais les dupliquer à la main. */
-  readonly prices = (() => {
-    const sections = MENU.flatMap((g) => g.sections);
-    const find = (id: string) => sections.find((s) => s.id === id);
-    const grill = find('grillades');
-    const buffet = find('buffet-seul');
-    const platter = find('plateau-mixte');
-    return {
-      grillFrom: Math.min(...(grill?.items.map((i) => i.priceLunch ?? Infinity) ?? [0])),
-      buffetLunch: buffet?.items[0]?.priceLunch ?? 0,
-      buffetDinner: buffet?.items[0]?.priceDinner ?? 0,
-      platterTwo: platter?.items.find((i) => i.name.startsWith('2'))?.price ?? 0,
-      kids: find('menu-enfants')?.items[0]?.price ?? 0,
-    };
-  })();
-
   constructor() {
     inject(SeoService).updateMetaTags({
-      title: 'Steakhouse halal à Villiers-le-Bel, grillades au charbon de bois et buffet à volonté',
+      title: 'Steakhouse halal à Fosses, grillades au charbon de bois et buffet à volonté',
       description: SITE.description,
       keywords:
-        'steakhouse halal, restaurant Villiers-le-Bel, grillades charbon de bois, buffet à volonté, côte de bœuf, restaurant turc 95, restaurant Fosses, iskender, adana',
+        'steakhouse halal, restaurant Fosses, grillades charbon de bois, buffet à volonté, côte de bœuf, restaurant turc 95, Val-d’Oise, iskender, adana',
       jsonLd: [
         {
           '@context': 'https://schema.org',
@@ -70,7 +53,4 @@ export class HomeComponent {
     });
   }
 
-  format(price: number): string {
-    return price.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-  }
 }

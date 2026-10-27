@@ -9,14 +9,12 @@
       <p class="lead page-head__lead" appReveal [revealDelay]="350">
         Nos grillades sont cuites au charbon de bois et servies avec le buffet d’entrées à volonté :
         chaque plat marqué « avec buffet » donne accès aux entrées turques, aux salades, aux plats
-        chauds et aux accompagnements, sans limite. Prix nets, service compris.
+        chauds et aux accompagnements, sans limite.
       </p>
-      @if (buffet?.priceLunch !== undefined && buffet?.priceDinner !== undefined) {
-        <p class="page-head__key" appReveal [revealDelay]="500">
-          Buffet seul : <strong>{{ price(buffet!.priceLunch!) }}</strong> le midi,
-          <strong>{{ price(buffet!.priceDinner!) }}</strong> le soir.
-        </p>
-      }
+      <p class="page-head__key" appReveal [revealDelay]="500">
+        Les tarifs sont disponibles au restaurant et par téléphone au
+        <a [href]="'tel:' + main.phoneHref" class="link">{{ main.phone }}</a>.
+      </p>
     </div>
   </section>
 
@@ -66,46 +64,10 @@
                 <p class="menu-section__intro">{{ section.intro }}</p>
               }
 
-              @if (section.columns; as cols) {
-                <div class="menu-cols" aria-hidden="true">
-                  <span class="menu-cols__label">{{ cols.lunch }}</span>
-                  <span class="menu-cols__label">{{ cols.dinner }}</span>
-                </div>
-              }
-
               <ul class="menu-list reveal--stagger" appReveal [revealDelay]="120">
                 @for (item of section.items; track item.name) {
                   <li class="menu-item">
-                    <span class="menu-item__leader">
-                      <span class="menu-item__name">{{ item.name }}</span>
-                    </span>
-
-                    @if (item.price !== undefined) {
-                      <span class="menu-item__price">{{ price(item.price) }}</span>
-                    } @else if (item.priceLunch !== undefined && item.priceDinner !== undefined) {
-                      <span class="menu-item__prices menu-item__prices--two">
-                        <span class="menu-item__price">
-                          <span class="visually-hidden">{{ section.columns?.lunch ?? 'Midi' }} </span
-                          >{{ price(item.priceLunch) }}
-                        </span>
-                        <span class="menu-item__price">
-                          <span class="visually-hidden">{{ section.columns?.dinner ?? 'Soir' }} </span
-                          >{{ price(item.priceDinner) }}
-                        </span>
-                      </span>
-                    } @else if (item.variants?.length) {
-                      <span
-                        class="menu-item__prices menu-item__prices--variants"
-                        [class.menu-item__prices--stack]="item.variants!.length > 1"
-                      >
-                        @for (v of item.variants; track v.label) {
-                          <span class="menu-item__variant">
-                            <span class="menu-item__variant-label">{{ v.label }}</span>
-                            <span class="menu-item__price">{{ price(v.price) }}</span>
-                          </span>
-                        }
-                      </span>
-                    }
+                    <span class="menu-item__name">{{ item.name }}</span>
 
                     @if (item.description) {
                       <span class="menu-item__desc">{{ item.description }}</span>

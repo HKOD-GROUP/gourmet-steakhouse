@@ -61,7 +61,7 @@ export class RestaurantComponent {
   ];
 
   readonly gallery = [
-    { image: 'cote-de-boeuf-frites-decoupe-detail', alt: 'Côte de bœuf découpée au couteau, frites et tomate grillée' },
+    { image: 'cote-de-boeuf-frites-decoupe', alt: 'Côte de bœuf découpée au couteau, frites et tomate grillée' },
     { image: 'iskender-kebab-vue-de-dessus', alt: 'Iskender kebab vu de dessus, avec yaourt et tomates' },
     { image: 'pave-de-saumon-grille-service', alt: 'Pavé de saumon grillé servi avec des frites' },
     { image: 'grillades-mixtes-vue-de-dessus', alt: 'Grillades mixtes vues de dessus : côtelettes, adana et brochettes' },
@@ -73,9 +73,9 @@ export class RestaurantComponent {
     inject(SeoService).updateMetaTags({
       title: 'Le restaurant : la braise, le buffet et la cuisine turque',
       description:
-        'Découvrez le Gourmet Steakhouse à Villiers-le-Bel : un gril au charbon de bois, un buffet d’entrées à volonté, des plateaux à partager et des spécialités turques servies en plat de fonte. Cuisine halal.',
+        'Découvrez le Gourmet Steakhouse à Fosses : un gril au charbon de bois, un buffet d’entrées à volonté, des plateaux à partager et des spécialités turques servies en plat de fonte. Cuisine halal.',
       keywords:
-        'restaurant halal Villiers-le-Bel, grill charbon de bois, buffet turc à volonté, plateau mixte, iskender, restaurant familial 95',
+        'restaurant halal Fosses, grill charbon de bois, buffet turc à volonté, plateau mixte, iskender, restaurant familial 95',
       jsonLd: [restaurantJsonLd(), breadcrumbJsonLd([{ name: 'Le restaurant', path: '/le-restaurant' }])],
     });
   }

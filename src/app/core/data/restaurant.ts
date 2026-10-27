@@ -33,7 +33,7 @@ export const SITE = {
   url: 'https://gourmet-steakhouse.fr',
   tagline: 'Grillades au charbon de bois et buffet à volonté',
   description:
-    'Gourmet Steakhouse, restaurant halal à Villiers-le-Bel (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec un buffet d’entrées à volonté. Ouvert midi et soir, 7 jours sur 7.',
+    'Gourmet Steakhouse, restaurant halal à Fosses (95) : côte de bœuf, entrecôte, brochettes et kebabs grillés au charbon de bois, servis avec un buffet d’entrées à volonté. Ouvert midi et soir, 7 jours sur 7.',
   legalName: 'Gourmet Steakhouse',
   email: 'contact@gourmet-steakhouse.fr',
   socials: {
@@ -41,38 +41,12 @@ export const SITE = {
     facebook: '',
   },
   cuisine: ['Steakhouse', 'Grillades', 'Cuisine turque', 'Halal'],
-  priceRange: '€€',
 };
 
 export const ESTABLISHMENTS: Establishment[] = [
   {
-    id: 'villiers-le-bel',
-    name: 'Gourmet Steakhouse Villiers-le-Bel',
-    city: 'Villiers-le-Bel',
-    streetAddress: '1 avenue des Entrepreneurs',
-    postalCode: '95400',
-    phone: '01 39 91 40 78',
-    phoneHref: '+33139914078',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gourmet+Steakhouse+1+avenue+des+Entrepreneurs+95400+Villiers-le-Bel',
-    geo: { lat: 49.0046, lng: 2.3796 },
-    openingHours: [
-      {
-        days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        label: 'Tous les jours, midi',
-        opens: '11:00',
-        closes: '15:00',
-      },
-      {
-        days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        label: 'Tous les jours, soir',
-        opens: '18:30',
-        closes: '23:00',
-      },
-    ],
-  },
-  {
     id: 'fosses',
-    name: 'Gourmet Steakhouse Fosses',
+    name: 'Gourmet Steakhouse',
     city: 'Fosses',
     streetAddress: '5 rue de la Ferme Saint-Ladre',
     postalCode: '95470',

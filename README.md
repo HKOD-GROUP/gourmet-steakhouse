@@ -1,6 +1,6 @@
 # gourmet-steakhouse
 
-Site vitrine du restaurant Gourmet Steakhouse (steakhouse halal, grillades au charbon de bois et buffet à volonté, Villiers-le-Bel et Fosses).
+Site vitrine du restaurant Gourmet Steakhouse (steakhouse halal, grillades au charbon de bois et buffet à volonté, Fosses dans le Val-d’Oise).
 
 Application Angular 18 standalone avec SSR (Angular SSR / Express, port 4000), prérendue au build, déployée sur Kubernetes via Helm. Socle technique repris du projet `orvya`.
 
@@ -9,8 +9,8 @@ Application Angular 18 standalone avec SSR (Angular SSR / Express, port 4000), p
 
 ## Contenu
 
-- `src/app/core/data/restaurant.ts` : adresses, téléphones, horaires (un seul fichier à corriger si l'un d'eux change ; il alimente les pages, le pied de page et les données structurées schema.org).
-- `src/app/core/data/menu.ts` : la carte complète, retranscrite du menu papier d'octobre 2026.
+- `src/app/core/data/restaurant.ts` : adresse, téléphone, horaires (un seul fichier à corriger si l'un d'eux change ; il alimente les pages, le pied de page et les données structurées schema.org).
+- `src/app/core/data/menu.ts` : la carte complète, retranscrite du menu papier d'octobre 2026, sans les prix (volontairement non publiés).
 - `public/images/` : visuels renommés et redimensionnés (`plats/` en 600 et 1200 px, `hero/` en 1000 et 2000 px, WebP + JPEG, `logo/` en 5 couleurs).
 
 ## Pages

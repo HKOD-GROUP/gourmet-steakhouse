@@ -1,5 +1,5 @@
 import { ESTABLISHMENTS, Establishment, MAIN_ESTABLISHMENT, SITE } from './restaurant';
-import { ALCOHOL_NOTICE, MENU, MenuItem } from './menu';
+import { ALCOHOL_NOTICE, MENU } from './menu';
 
 /** Un établissement au format schema.org `Restaurant`. */
 export function restaurantJsonLd(e: Establishment = MAIN_ESTABLISHMENT): object {
@@ -13,7 +13,6 @@ export function restaurantJsonLd(e: Establishment = MAIN_ESTABLISHMENT): object 
     logo: `${SITE.url}/images/logo/gourmet-steakhouse-logo-brun.png`,
     telephone: e.phoneHref,
     servesCuisine: SITE.cuisine,
-    priceRange: SITE.priceRange,
     acceptsReservations: 'True',
     hasMenu: `${SITE.url}/carte`,
     address: {
@@ -41,20 +40,6 @@ export function allRestaurantsJsonLd(): object[] {
   return ESTABLISHMENTS.map((e) => restaurantJsonLd(e));
 }
 
-function offers(item: MenuItem): object[] {
-  const list: { label?: string; price: number }[] = [];
-  if (item.price !== undefined) list.push({ price: item.price });
-  if (item.priceLunch !== undefined) list.push({ label: 'Midi', price: item.priceLunch });
-  if (item.priceDinner !== undefined) list.push({ label: 'Soir', price: item.priceDinner });
-  for (const v of item.variants ?? []) list.push({ label: v.label, price: v.price });
-  return list.map((o) => ({
-    '@type': 'Offer',
-    price: o.price.toFixed(2),
-    priceCurrency: 'EUR',
-    ...(o.label ? { name: o.label } : {}),
-  }));
-}
-
 /** La carte au format schema.org `Menu` (page /carte). */
 export function menuJsonLd(): object {
   return {
@@ -74,7 +59,6 @@ export function menuJsonLd(): object {
           '@type': 'MenuItem',
           name: item.name,
           ...(item.description ? { description: item.description } : {}),
-          offers: offers(item),
         })),
       })),
     ),

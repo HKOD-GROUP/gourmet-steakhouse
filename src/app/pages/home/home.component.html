@@ -9,7 +9,7 @@
       </h1>
       <p class="lead hero__lead" appReveal [revealDelay]="380">
         Côte de bœuf, entrecôte, brochettes et kebabs saisis à la braise, servis avec un buffet
-        d’entrées à volonté. Cuisine halal, à Villiers-le-Bel et à Fosses.
+        d’entrées à volonté. Cuisine halal, à Fosses dans le Val-d’Oise.
       </p>
       <div class="hero__actions" appReveal [revealDelay]="520">
         <a routerLink="/carte" class="btn">Voir la carte</a>
@@ -22,8 +22,8 @@
     <div class="hero__media reveal--wipe" appReveal [revealDelay]="120" appParallax [parallaxSpeed]="0.06">
       <app-picture
         folder="plats"
-        name="cuisson-au-charbon-de-bois-entrecote-adana"
-        alt="Entrecôte et brochette adana en cuisson sur le gril au charbon de bois"
+        name="cote-de-boeuf-frites-decoupe-detail"
+        alt="Côte de bœuf grillée au charbon de bois, découpée au couteau, avec frites, tomate et piment grillés"
         sizes="(max-width: 900px) 100vw, 50vw"
         loading="eager"
         [priority]="true"
@@ -93,7 +93,6 @@
             <div class="dish__body" appReveal [revealDelay]="i * 120 + 250">
               <h3 class="display-md dish__name">{{ dish.name }}</h3>
               <p class="dish__desc">{{ dish.description }}</p>
-              <p class="dish__price">{{ dish.price }}</p>
             </div>
           </li>
         }
@@ -101,34 +100,34 @@
     </div>
   </section>
 
-  <!-- Repères de prix -->
+  <!-- Les formules -->
   <section class="section section--bordeaux" aria-labelledby="formules-title">
     <div class="container-site">
-      <h2 id="formules-title" class="display-lg" appReveal>Ce que ça coûte</h2>
+      <h2 id="formules-title" class="display-lg" appReveal>Comment on mange ici</h2>
       <dl class="formules">
         <div class="formule" appReveal [revealDelay]="100">
           <dt>Grillade avec buffet</dt>
-          <dd>dès {{ format(prices.grillFrom) }}</dd>
-          <p>Brochette de poulet, d’adana, ailes ou escalope, le midi.</p>
+          <dd>Une viande, le buffet</dd>
+          <p>Vous choisissez votre pièce ou votre brochette, le buffet d’entrées est compris.</p>
         </div>
         <div class="formule" appReveal [revealDelay]="220">
           <dt>Buffet seul</dt>
-          <dd>{{ format(prices.buffetLunch) }}</dd>
-          <p>Le midi. {{ format(prices.buffetDinner) }} le soir, sans grillade.</p>
+          <dd>Midi et soir</dd>
+          <p>Mezzés, salades, plats chauds et accompagnements, à volonté, sans grillade.</p>
         </div>
         <div class="formule" appReveal [revealDelay]="340">
-          <dt>Plateau mixte pour deux</dt>
-          <dd>{{ format(prices.platterTwo) }}</dd>
+          <dt>Plateau mixte</dt>
+          <dd>Pour 1 à 4</dd>
           <p>L’assortiment de nos grillades à partager, buffet compris.</p>
         </div>
         <div class="formule" appReveal [revealDelay]="460">
           <dt>Menu enfants</dt>
-          <dd>{{ format(prices.kids) }}</dd>
-          <p>Hamburger ou nuggets, avec buffet.</p>
+          <dd>Avec buffet</dd>
+          <p>Hamburger ou nuggets, pour les plus petits.</p>
         </div>
       </dl>
       <div appReveal [revealDelay]="300">
-        <p class="formules__note">Prix nets, service compris. Les prix du soir figurent sur la carte.</p>
+        <p class="formules__note">Les tarifs sont disponibles au restaurant et par téléphone.</p>
         <a routerLink="/carte" class="btn btn--light">Voir toute la carte</a>
       </div>
     </div>
@@ -150,12 +149,12 @@
     <div class="container-site">
       <div class="adresses__head" appReveal>
         <span class="rule"></span>
-        <h2 id="adresses-title" class="display-lg">Deux adresses dans le Val-d’Oise</h2>
+        <h2 id="adresses-title" class="display-lg">Nous trouver</h2>
       </div>
       <div class="adresses">
         @for (e of establishments; track e.id; let i = $index) {
           <div class="adresse" appReveal [revealDelay]="i * 160 + 120">
-            <h3 class="display-md">{{ e.city }}</h3>
+            <h3 class="display-md">{{ e.name }}, {{ e.city }}</h3>
             <address class="adresse__address">
               {{ e.streetAddress }}<br />
               {{ e.postalCode }} {{ e.city }}

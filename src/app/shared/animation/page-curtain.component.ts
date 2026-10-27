@@ -36,8 +36,13 @@ const LIFT_MS = 640;
         justify-content: center;
         background: var(--bordeaux);
         transform: translateY(101%);
+        visibility: hidden;
         pointer-events: none;
         will-change: transform;
+      }
+      .curtain--in,
+      .curtain--out {
+        visibility: visible;
       }
       .curtain--in {
         transform: translateY(0);
